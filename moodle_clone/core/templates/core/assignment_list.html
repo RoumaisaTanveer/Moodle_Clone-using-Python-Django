@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course.title }} - Assignments</title>
+</head>
+<body>
+    <h1>Assignments for {{ course.title }}</h1>
+    <a href="{% url 'add_assignment' course.id %}">Add Assignment</a>
+    <ul>
+        {% for assignment in assignments %}
+            <li>
+                <strong>{{ assignment.title }}</strong> - Due: {{ assignment.due_date }}
+                <a href="{% url 'submit_assignment' assignment.id %}">Submit Assignment</a>
+                
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'course_detail' course.id %}">Back to Course</a>
+</body>
+</html>

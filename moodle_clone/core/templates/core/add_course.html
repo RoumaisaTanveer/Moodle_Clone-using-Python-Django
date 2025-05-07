@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;  /* Center horizontally */
+            align-items: center;      /* Center vertically */
+            height: 100vh;           /* Full viewport height */
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Set a fixed width for better alignment */
+        }
+        h1 {
+            color: #ff8c00; /* Moodle's orange color */
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding does not increase width */
+        }
+        button {
+            background-color: #ff8c00; /* Moodle's orange color */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%; /* Full-width button */
+        }
+        button:hover {
+            background-color: #ff8c00;; /* Darker shade on hover */
+        }
+        a {
+            margin-top: 20px;
+            display: inline-block;
+            color: #007BFF; /* Blue link color */
+            text-decoration: none;
+            text-align: center; /* Center the cancel link */
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Course</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <button type="submit">Add Course</button>
+        </form>
+        <a href="{% url 'course_list' %}">Cancel</a>
+    </div>
+</body>
+</html>

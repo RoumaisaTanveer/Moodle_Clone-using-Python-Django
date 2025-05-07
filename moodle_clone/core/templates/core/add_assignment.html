@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Assignment</title>
+</head>
+<body>
+    <h1>Add Assignment</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="due_date">Due Date:</label>
+        <input type="date" id="due_date" name="due_date" required>
+
+        <button type="submit">Add Assignment</button>
+    </form>
+    <a href="{% url 'assignment_list' course_id %}">Cancel</a>
+</body>
+</html>

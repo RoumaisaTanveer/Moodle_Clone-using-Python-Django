@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ course.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Light background for the page */
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #333; /* Dark text for headings */
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            text-align: center; /* Centered heading */
+            margin-top: 20px; /* Spacing above the main title */
+        }
+
+        p {
+            color: #555; /* Medium dark text for paragraphs */
+            line-height: 1.6; /* Better line spacing for readability */
+        }
+
+        ul {
+            list-style-type: none; /* Remove default list styling */
+            padding: 0; /* Remove padding */
+            margin-bottom: 20px; /* Space below lists */
+        }
+
+        ul li {
+            background-color: #007bff; /* Blue background for list items */
+            border: 1px solid #0056b3; /* Darker blue border */
+            padding: 15px; /* Padding inside list items */
+            margin-bottom: 10px; /* Space between items */
+            border-radius: 5px; /* Rounded corners */
+            color: #ffffff; /* White text color */
+        }
+
+        ul li a {
+            color: #ffffff; /* White link color */
+            text-decoration: none; /* Remove underline */
+            font-weight: bold; /* Bold font for links */
+        }
+
+        ul li a:hover {
+            color: #ffe600; /* Yellow on hover for links */
+        }
+
+        a {
+            display: inline-block; /* Inline block for proper spacing */
+            margin: 10px 5px; /* Margin around buttons */
+            padding: 10px 15px; /* Padding inside buttons */
+            background-color: #28a745; /* Green background for buttons */
+            color: white; /* Button text color */
+            text-decoration: none; /* Remove underline */
+            border-radius: 5px; /* Rounded corners */
+            text-align: center; /* Center text in buttons */
+            font-weight: bold; /* Bold text for buttons */
+        }
+
+        a:hover {
+            background-color: #218838; /* Darker green on hover for buttons */
+        }
+
+        /* Container for layout */
+        .container {
+            max-width: 800px; /* Max width for content */
+            margin: 0 auto; /* Center container */
+            padding: 20px; /* Padding inside container */
+            background-color: #ffffff; /* White background for the container */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+            border-radius: 8px; /* Rounded corners for container */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ course.title }}</h1>
+        <p>{{ course.description }}</p>
+
+        <h2>Lessons</h2>
+        <ul>
+            {% for lesson in lessons %}
+                <li>
+                    <strong>{{ lesson.title }}</strong>
+                    <p>{{ lesson.content }}</p>
+                    <a href="{% url 'update_lesson' lesson.id %}">Update Lesson</a> <!-- Update button -->
+                </li>
+            {% empty %}
+                <li>No lessons available.</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Assignments</h2>
+        <ul>
+            {% for assignment in assignments %}
+                <li>
+                    <a href="{% url 'submit_assignment' assignment.id %}">{{ assignment.title }}</a> - Due: {{ assignment.due_date }}
+                    <p>{{ assignment.description }}</p>
+                </li>
+            {% empty %}
+                <li>No assignments available.</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'add_lesson' course.id %}">Add Lesson</a>
+        <a href="{% url 'add_assignment' course.id %}">Add Assignment</a>
+        <a href="{% url 'delete_course' course.id %}">Delete Course</a> <!-- Delete Course button -->
+        <a href="{% url 'course_list' %}">Back to Course List</a>
+    </div>
+</body>
+</html>

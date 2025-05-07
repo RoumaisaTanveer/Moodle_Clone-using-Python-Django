@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Moodle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #08376adc;
+         
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            max-height: fit-content;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        section {
+            padding: 20px;
+        }
+       
+        ul {
+            padding: 0;
+        }
+        ul li {
+            margin: 10px 0;
+        }
+        section h1{
+            color: darkblue;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            
+        
+        }
+        section img {
+    margin-left: 750px;
+    width: 450px;  
+    height: auto;  
+    
+}
+nav img{
+margin-right: 1000px;
+width: 150px;
+height: auto;
+}
+        footer {
+            background-color: #08376adc;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+      
+        <nav>
+            {% load static %}
+            <img src="{% static 'moodle_logo_TM.svg' %}" alt="Moodle Community Logo">
+
+            <ul>
+                <li><a href="{% url 'course_list' %}">Courses</a></li>
+                <!-- <li><a href="{% url 'add_course' %}">Add a New Course</a></li> -->
+                <li><a href="{% url 'quiz_list' course_id=8 %}">Quizzes</a></li>
+                <li><a href="{% url 'forum_list' course_id=8%}">Forums</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h1>Welcome to Moodle <br> Community</h1>
+        {% load static %}
+<img src="{% static 'mod.png' %}" alt="Moodle Community Logo" style="max-width: 100%; height: auto;">
+
+        <ul>
+            {% for course in courses %}
+                <li>
+                    <a href="{% url 'course_detail' course_id=course.id %}">{{ course.name }}</a>
+                    - <a href="{% url 'add_lesson' course_id=course.id %}">Add Lesson</a>
+                    - <a href="{% url 'delete_course' course_id=course.id %}">Delete Course</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Moodle </p>
+    </footer>
+
+</body>
+</html>

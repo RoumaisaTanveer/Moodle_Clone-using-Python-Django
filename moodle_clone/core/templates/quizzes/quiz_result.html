@@ -1,0 +1,48 @@
+<!-- quiz_result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ quiz.title }} - Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Results for {{ quiz.title }}</h1>
+    <p>You scored {{ score }} out of {{ total_questions }}.</p>
+    <ul>
+        {% for question, user_answer, correct_answer in results %}
+        <li>
+            <strong>{{ question.text }}</strong><br>
+            Your answer: {{ user_answer }}<br>
+            Correct answer: {{ correct_answer }}<br>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <footer>
+        <p>&copy; 2024 Your Website Name</p>
+    </footer>
+</body>
+</html>

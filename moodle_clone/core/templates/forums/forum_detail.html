@@ -1,0 +1,59 @@
+<!-- forum_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ forum.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>{{ forum.title }}</h2>
+    <ul>
+        {% for post in posts %}
+        <li><strong>{{ post.user.username }}</strong>: {{ post.content }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Post a Reply</h3>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="content" rows="3" required></textarea><br>
+        <input type="submit" value="Post">
+    </form>
+</body>
+</html>

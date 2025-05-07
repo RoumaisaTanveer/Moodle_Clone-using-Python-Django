@@ -1,0 +1,33 @@
+<!-- quiz_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ quiz.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Optional CSS -->
+</head>
+<body>
+    <h2>{{ quiz.title }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% if questions %}
+            {% for question in questions %}
+            <div>
+                <strong>{{ question.text }}</strong><br>
+                {% for answer in question.answer_set.all %}
+                <input type="radio" name="question_{{ question.id }}" value="{{ answer.text }}"> {{ answer.text }}<br>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <input type="submit" value="Submit">
+        {% else %}
+            <p>No questions available for this quiz.</p>
+        {% endif %}
+    </form>
+
+    <footer>
+        <p>&copy; 2024 Moodle</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Lesson</title>
+</head>
+<body>
+    <h1>Update Lesson</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ lesson.title }}" required>
+
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" required>{{ lesson.content }}</textarea>
+
+        <button type="submit">Update Lesson</button>
+    </form>
+    <a href="{% url 'course_detail' lesson.course.id %}">Cancel</a>
+</body>
+</html>
