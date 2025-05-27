@@ -1,7 +1,7 @@
-Overview
+Overview :
 A web application developed using Django and Python as part of an academic course project. This system replicates key functionalities of Moodle, providing a platform for managing courses, assignments, and user interactions.
 
-Features
+Features :
 User Authentication: Register, log in, and manage user accounts.
 
 Course Management: Create, edit, and enroll in courses.
